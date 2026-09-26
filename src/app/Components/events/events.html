@@ -1,1 +1,34 @@
-<p>events works!</p>
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Events &amp; Training</h2>
+      <p>Bootcamps, seminars and hands-on workshops for early-career researchers.</p>
+    </div>
+
+    <div class="grid3">
+      @for (event of events; track event.id) {
+        <div class="card event-card">
+          <div class="event-img">{{ event.imageText }}</div>
+          <div class="event-body">
+            <span class="badge" [class.orange]="event.badgeClass === 'orange'">{{ event.badge }}</span>
+            <h3>{{ event.title }}</h3>
+            <div class="meta">
+              <span>{{ event.date }}</span>
+              <span>{{ event.venue }}</span>
+              <span>{{ event.duration }}</span>
+            </div>
+            @if (event.fee) {
+              <p>Registration fee: <b>{{ event.fee }}</b></p>
+            }
+            @if (event.description) {
+              <p>{{ event.description }}</p>
+            }
+            <button (click)="openEvent(event.id)">Register Now</button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
