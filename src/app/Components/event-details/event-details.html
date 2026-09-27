@@ -6,7 +6,7 @@
       <div class="card event-card" style="margin-top: 22px">
         <div class="event-img">{{ current.imageText }}</div>
         <div class="event-body">
-          <span class="badge" >{{ current.badge }}</span>
+          <span class="badge">{{ current.badge }}</span>
           <h2 style="margin: 10px 0 0">{{ current.title }}</h2>
 
           <div class="meta">
@@ -20,7 +20,9 @@
           }
 
           @if (current.fee) {
-            <p>Registration fee: <b>{{ current.fee }}</b></p>
+            <p>
+              Registration fee: <b>{{ current.fee }}</b>
+            </p>
           }
 
           <div class="actions" style="margin-top: 18px">
@@ -28,6 +30,21 @@
           </div>
         </div>
       </div>
+
+       @if (queryParams().length) {
+          <p>
+            /events/{{ current.id }}?<b>{{ queryString() }}</b>
+          </p>
+
+          
+          <div class="meta" style="margin: 12px 0">
+            @for (param of queryParams(); track param.key) {
+              <span class="badge">{{ param.key }} = {{ param.value }}</span>
+            }
+          </div>
+        }
+
+    
     } @else if (notFound()) {
       <div class="card">
         <h2>Event not found</h2>

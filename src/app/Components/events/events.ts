@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Event, eventList } from '../../data/eventList';
 
+export interface EventCard extends Event {
+  type: string;
+}
+
 @Component({
   imports: [RouterLink],
   selector: 'app-events',
@@ -9,5 +13,8 @@ import { Event, eventList } from '../../data/eventList';
   templateUrl: './events.html',
 })
 export class Events {
-  readonly events: Event[] = eventList;
+  readonly events: EventCard[] = eventList.map((event) => ({
+    ...event,
+    type: event.badge.toLowerCase().replaceAll(' ', '-'),
+  }));
 }
