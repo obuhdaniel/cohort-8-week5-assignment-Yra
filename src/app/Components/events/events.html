@@ -8,10 +8,12 @@
     <div class="grid3">
       @for (event of events; track event.id) {
         <div class="card event-card">
-          <div class="event-img">{{ event.imageText }}</div>
+          <div class="event-img" >{{ event.imageText }}</div>
           <div class="event-body">
-            <span class="badge" [class.orange]="event.badgeClass === 'orange'">{{ event.badge }}</span>
-            <h3>{{ event.title }}</h3>
+            <span class="badge" >{{ event.badge }}</span>
+            <h3>
+              <a [routerLink]="['/events', event.id]">{{ event.title }}</a>
+            </h3>
             <div class="meta">
               <span>{{ event.date }}</span>
               <span>{{ event.venue }}</span>
@@ -23,12 +25,12 @@
             @if (event.description) {
               <p>{{ event.description }}</p>
             }
-            <button (click)="openEvent(event.id)">Register Now</button>
+            <a class="btn" style="margin-top: 12px" [routerLink]="['/events', event.id]">
+              Register Now
+            </a>
           </div>
         </div>
       }
     </div>
   </div>
 </section>
-
-
